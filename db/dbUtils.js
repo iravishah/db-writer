@@ -18,8 +18,18 @@ async function set(hash, key, data) {
   return await wait(global.redisConn.hset, global.redisConn, hash, key, data);
 }
 
+async function spop(key, value) {
+  return await wait(global.redisConn.spop, global.redisConn, key, value);
+}
+
+async function sadd(key, value) {
+  return await wait(global.redisConn.sadd, global.redisConn, key, value);
+}
+
 module.exports = {
   createLog,
   zadd,
-  set
+  set,
+  spop,
+  sadd
 }

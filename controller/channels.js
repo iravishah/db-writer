@@ -2,27 +2,37 @@ const _ = require('lodash');
 
 const m = require('../responses/responses.json');
 
-const { createLog } = require('../db/dbUtils');
+const { createLog, spop, sadd } = require('../db/dbUtils');
 
 function startListener() {
   global.subscriber.on('message', (channel, message) => {
     if (!message) {
       return;
     }
-    if (typeof message === 'string') {
-      try {
-        message = JSON.parse(message);
-      } catch (e) { }
-    }
-    if (message.instanceId === global.instanceId) {
-      const data = {
-        message: JSON.stringify(message.data)
-      };
-      createLog(data);
-    }
+    sadd(config.writerMsg, message);
   });
 }
 
+function startPollar() {
+  setInterval(async () => {
+    const [e, message] = await spop(config.writerMsg, 1);
+    if (e) {
+      return e;
+    }
+    if (message && message.length) {
+      callback(message[0]);
+    }
+  }, 1000);
+}
+
+function callback(message) {
+  const data = {
+    message: message
+  };
+  createLog(data);
+}
+
 module.exports = {
-  startListener
+  startListener,
+  startPollar
 }

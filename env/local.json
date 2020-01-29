@@ -29,6 +29,7 @@
     }
   },
   "channel": "orchestrator-channel",
+  "writerMsg": "writerMsg",
   "adminKey": "test",
   "intHash": "dbwriter:instances",
   "hbHash": "dbwriter:heartbeat",
