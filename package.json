@@ -1,0 +1,28 @@
+{
+  "name": "db-writer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iravishah/db-writer.git"
+  },
+  "author": "Ravi Shah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iravishah/db-writer/issues"
+  },
+  "homepage": "https://github.com/iravishah/db-writer#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "mongo-uri-builder": "^2.0.0",
+    "mongoose": "^5.8.10",
+    "redis": "^2.8.0",
+    "uuid": "^3.4.0",
+    "winston": "^3.2.1"
+  }
+}
